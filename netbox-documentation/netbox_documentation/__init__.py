@@ -5,7 +5,7 @@ class DocumentationConfig(PluginConfig):
     name = "netbox_documentation"
     verbose_name = "Documentation"
     description = "Markdown documentation with inline images for NetBox objects"
-    author = "YOUR_PUBLIC_NAME"
+    author = "LKWFahrer_300KMH"
     version = "0.3.0"
     base_url = "documentation"
     min_version = "4.5.2"

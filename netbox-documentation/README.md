@@ -2,7 +2,7 @@
 
 Markdown documentation with inline images for NetBox objects. A **Documentation** button opens a dedicated page, keeping long procedures off the object's main page. A plugin overview lists documented objects, searchable by name/content and grouped by NetBox site.
 
-> Public source release candidate. This repository is derived from an internal installation. The code has been separated from local configuration and example data. Test with a staging NetBox instance before using it in production.
+Test with a staging NetBox instance before using it in production.
 
 ## Compatibility
 
@@ -24,7 +24,7 @@ Markdown documentation with inline images for NetBox objects. A **Documentation*
 Install the package into the **same Python environment** as NetBox. This source repository has not been published to PyPI.
 
 ```sh
-git clone https://github.com/OWNER/netbox-documentation.git
+git clone https://github.com/LKWFahrer300KMH/netbox-documentation.git
 /opt/netbox/venv/bin/python -m pip install ./netbox-documentation
 ```
 
@@ -43,7 +43,7 @@ PLUGINS = ["netbox_documentation"]
 
 If you already have other plugins, add `netbox_documentation` to the existing list. Rebuild the image or reinstall the package, then run `manage.py migrate`, restart the NetBox services, and check the **Plugins → Documentation** page. Keep the same plugin installed in all NetBox application and worker images.
 
-To limit the supported models, configure `PLUGINS_CONFIG` with their NetBox model labels:
+The NetBox administrator chooses which **object types** get the Documentation button using `PLUGINS_CONFIG`. The default list is shown above. To limit it, set `models` to the NetBox model labels you want:
 
 ```python
 PLUGINS_CONFIG = {
@@ -52,6 +52,8 @@ PLUGINS_CONFIG = {
     },
 }
 ```
+
+This example enables documentation for devices, VMs, and services only. Other supported models can be added to the tuple; a model needs a NetBox `comments` field. A change to this setting takes effect after a restart. It does not delete existing documents, but documents for disabled models will no longer be available through this plugin until the model is enabled again. Regular users cannot change this administrator setting in the UI; their ability to view or edit a document is governed by NetBox object permissions.
 
 ## Copy existing comments
 
@@ -78,7 +80,7 @@ python -m unittest discover -s tests -v
 
 ## Before publication
 
-Replace `YOUR_PUBLIC_NAME` in `pyproject.toml`, `netbox_documentation/__init__.py`, and `NOTICE`. Replace `OWNER` in the clone example with your GitHub account. Review the Apache-2.0 license choice and ensure you have the right to publish all included code. Do not commit local NetBox configuration, database dumps, image uploads, or secrets.
+The public author name `LKWFahrer_300KMH` is a display name; it need not match the GitHub account name. Review the Apache-2.0 license choice and ensure you have the right to publish all included code. Do not commit local NetBox configuration, database dumps, image uploads, or secrets.
 
 ## License
 
