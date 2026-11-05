@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "netbox-documentation"
+version = "0.3.0"
+description = "Markdown documentation and inline images for NetBox objects"
+readme = "README.md"
+requires-python = ">=3.12"
+license = {text = "Apache-2.0"}
+authors = [{name = "YOUR_PUBLIC_NAME"}]
+classifiers = [
+  "Framework :: Django",
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: Apache Software License",
+]
+
+[tool.setuptools.packages.find]
+include = ["netbox_documentation*"]
+
+[tool.setuptools.package-data]
+netbox_documentation = ["templates/netbox_documentation/*.html"]
